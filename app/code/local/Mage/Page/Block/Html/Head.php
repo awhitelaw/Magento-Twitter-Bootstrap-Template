@@ -249,7 +249,7 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
             );
             
             // google js repo
-            $html .= $this->_prepareGoogleFont('<script src="%s"></script>' . "\n",
+            $html .= $this->_prepareGoogleJs('<script src="%s"></script>' . "\n",
                 empty($items['google_js']) ? array() : $items['google_js']
             );
 
@@ -358,6 +358,20 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
             foreach ($rows as $src){
                 $src = ucwords($src);
                 $src = str_replace(' ', '+', $src);
+                $html .= sprintf($format, $src);
+            }
+        }
+        return $html;
+    }
+    
+    protected function &_prepareGoogleJs($format, array $items)
+    {
+        $html = '';
+        foreach ($items as $params => $rows){
+            // render elements
+            $params = trim($params);
+            $params = $params ? ' ' . $params : '';
+            foreach ($rows as $src){
                 $html .= sprintf($format, $src);
             }
         }
