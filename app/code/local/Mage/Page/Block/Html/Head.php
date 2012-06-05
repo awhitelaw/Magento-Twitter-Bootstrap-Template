@@ -128,9 +128,9 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
     * @param string $params
     * @return Mage_Page_Block_Html_Head
     */
-    public function addGoogleJs($url, $params = "")
+    public function addExternalJs($url, $params = "")
     {
-        $this->addItem('google_js', $url, $params);
+        $this->addItem('external_js', $url, $params);
         return $this;
     }
 
@@ -215,7 +215,7 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
                 case 'skin_css':    // skin/*/*.css
                 case 'less_css':    // skin/*/*.less
                 case 'google_font': // skin/*/*.css
-                case 'google_js':   // http://*.googlecode.com/*/*/*.js
+                case 'external_js':   // http://*.googlecode.com/*/*/*.js
                     $lines[$if][$item['type']][$params][$item['name']] = $item['name'];
                     break;
                 default:
@@ -249,8 +249,8 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
             );
             
             // google js repo
-            $html .= $this->_prepareGoogleJs('<script src="%s"></script>' . "\n",
-                empty($items['google_js']) ? array() : $items['google_js']
+            $html .= $this->_prepareExternalJs('<script src="%s"></script>' . "\n",
+                empty($items['external_js']) ? array() : $items['external_js']
             );
 
             // static and skin css
@@ -364,7 +364,7 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
         return $html;
     }
     
-    protected function &_prepareGoogleJs($format, array $items)
+    protected function &_prepareExternalJs($format, array $items)
     {
         $html = '';
         foreach ($items as $params => $rows){
