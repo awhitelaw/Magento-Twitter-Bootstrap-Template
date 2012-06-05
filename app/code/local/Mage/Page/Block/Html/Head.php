@@ -237,24 +237,24 @@ class Mage_Page_Block_Html_Head extends Mage_Core_Block_Template
             }
             
             // less css files
-            $html .= $this->_prepareStaticAndSkinElements('<link rel="stylesheet/less" type="text/css" href="%s"%s />' . "\n",
+            $html .= $this->_prepareStaticAndSkinElements('<link rel="stylesheet/less" type="text/css" href="%s"%s>' . "\n",
                 array(),
                 empty($items['less_css']) ? array() : $items['less_css'],
                 null
             );
 
             // google font css files
-            $html .= $this->_prepareGoogleFont('<link href="http://fonts.googleapis.com/css?family=%s" rel="stylesheet" type="text/css" />' . "\n",
+            $html .= $this->_prepareGoogleFont('<link href="http://fonts.googleapis.com/css?family=%s" rel="stylesheet" type="text/css">' . "\n",
                 empty($items['google_font']) ? array() : $items['google_font']
             );
             
             // google js repo
-            $html .= $this->_prepareExternalJs('<script src="%s"></script>' . "\n",
+            $html .= $this->_prepareExternalJs('<script type="text/javascript" src="%s"></script>' . "\n",
                 empty($items['external_js']) ? array() : $items['external_js']
             );
 
             // static and skin css
-            $html .= $this->_prepareStaticAndSkinElements('<link rel="stylesheet" type="text/css" href="%s"%s />' . "\n",
+            $html .= $this->_prepareStaticAndSkinElements('<link rel="stylesheet" type="text/css" href="%s"%s>' . "\n",
                 empty($items['js_css']) ? array() : $items['js_css'],
                 empty($items['skin_css']) ? array() : $items['skin_css'],
                 $shouldMergeCss ? array(Mage::getDesign(), 'getMergedCssUrl') : null
