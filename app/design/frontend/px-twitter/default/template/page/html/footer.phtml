@@ -23,23 +23,37 @@
  * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+/* @var $this Mage_Page_Block_Html_Footer */
+$footer_links = $this->getChildHtml('footer_links');
+$this->unsetChild('footer_links');
 ?>
-  <!--[if lt IE 7 ]>
+<!--[if lt IE 7 ]>
     <script src="<?php echo $this->getSkinUrl('js/dd_belatedpng.js') ?>"></script>
     <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
-  <![endif]-->
+<![endif]-->
 
-  <!-- yui profiler and profileviewer - remove for production -->
+<!-- yui profiler and profileviewer - remove for production -->
 <!--  <script src="--><?php //echo $this->getSkinUrl('js/profiling/config.js') ?><!--"></script>-->
 <!--  <script src="--><?php //echo $this->getSkinUrl('js/profiling/yahoo-profiling.min.js') ?><!--"></script>-->
-  <!-- end profiling code -->
-<div class="footer-container">
-    <footer>
-        <?php echo $this->getChildHtml() ?>
-        <p class="bugs"><?php echo $this->__('Help Us to Keep Magento Healthy') ?> - <a href="http://www.magentocommerce.com/bug-tracking" onclick="this.target='_blank'"><strong><?php echo $this->__('Report All Bugs') ?></strong></a> <?php echo $this->__('(ver. %s)', Mage::getVersion()) ?></p>
-        <address><?php echo $this->getCopyright() ?></address>
-    </footer>
-</div>
+<!-- end profiling code -->
+<footer>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="span18">
+                <?php echo $this->getChildHtml() ?>
+            </div>
+            <div class="span6">
+                <?php echo $footer_links ?>
+            </div>
+        </div>
+        
+        <div class="row">
+             <p class="bugs"><?php echo $this->__('Help Us to Keep Magento Healthy') ?> - <a href="http://www.magentocommerce.com/bug-tracking" onclick="this.target='_blank'"><strong><?php echo $this->__('Report All Bugs') ?></strong></a> <?php echo $this->__('(ver. %s)', Mage::getVersion()) ?></p>
+            <address><?php echo $this->getCopyright() ?></address>
+        </div>
+    </div>
+</footer>
 <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
      chromium.org/developers/how-tos/chrome-frame-getting-started -->
 <!--[if lt IE 7 ]>
